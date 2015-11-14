@@ -1,4 +1,3 @@
-import os, sys, inspect
 from tkinter import *
 import time
 import pyautogui
