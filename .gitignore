@@ -5,3 +5,4 @@ local/
 share/
 
 .vscode/
+*.pyc
