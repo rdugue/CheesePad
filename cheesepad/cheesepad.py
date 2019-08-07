@@ -1,39 +1,7 @@
 from tkinter import *
+from inputforger.inputforger import *
 import time
-import pyautogui
 
-class KeySim:
-    def left_key_down():
-        #PressKey(VK_LEFT)
-        pyautogui.keyDown('left')
-
-    def left_key_up():
-        #ReleaseKey(VK_LEFT)
-        pyautogui.keyUp('left')
-
-    def right_key_down():
-        #PressKey(VK_RIGHT)
-        pyautogui.keyDown('right')
-
-    def right_key_up():
-        #ReleaseKey(VK_RIGHT)
-        pyautogui.keyUp('right')
-
-    def up_key_down():
-        #PressKey(VK_UP)
-        pyautogui.keyDown('up')
-
-    def up_key_up():
-        #ReleaseKey(VK_UP)
-        pyautogui.keyUp('up')
-
-    def down_key_down():
-        #PressKey(VK_DOWN)
-        pyautogui.keyDown('down')
-
-    def down_key_up():
-        #ReleaseKey(VK_DOWN)
-        pyautogui.keyUp('down')
 
 class App:
     up_string = '\u21D1'
@@ -49,21 +17,29 @@ class App:
         frame = Frame(master)
         frame.pack()
 
-        self.up = Button(frame, text=self.up_string, command=self.key_press, height='5', width='10')
+        self.up = Button(frame, text=self.up_string,
+                         command=self.key_press, height='5', width='10')
         self.up.grid(row=0, column=1)
-        self.left = Button(frame, text=self.left_string, command=self.key_press, height='5', width='10')
+        self.left = Button(frame, text=self.left_string,
+                           command=self.key_press, height='5', width='10')
         self.left.grid(row=1, column=0)
-        self.right = Button(frame, text=self.right_string, command=self.key_press, height='5', width='10')
+        self.right = Button(frame, text=self.right_string,
+                            command=self.key_press, height='5', width='10')
         self.right.grid(row=1, column=2)
-        self.down = Button(frame, text=self.down_string, command=self.key_press, height='5', width='10')
+        self.down = Button(frame, text=self.down_string,
+                           command=self.key_press, height='5', width='10')
         self.down.grid(row=2, column=1)
-        self.top_left = Button(frame, text=self.up_left_string, command=self.key_press, height='5', width='10')
+        self.top_left = Button(frame, text=self.up_left_string,
+                               command=self.key_press, height='5', width='10')
         self.top_left.grid(row=0, column=0)
-        self.down_left = Button(frame, text=self.down_left_string, command=self.key_press, height='5', width='10')
+        self.down_left = Button(
+            frame, text=self.down_left_string, command=self.key_press, height='5', width='10')
         self.down_left.grid(row=2, column=0)
-        self.top_right = Button(frame, text=self.up_right_string, command=self.key_press, height='5', width='10')
+        self.top_right = Button(
+            frame, text=self.up_right_string, command=self.key_press, height='5', width='10')
         self.top_right.grid(row=0, column=2)
-        self.down_right = Button(frame, text=self.down_right_string, command=self.key_press, height='5', width='10')
+        self.down_right = Button(
+            frame, text=self.down_right_string, command=self.key_press, height='5', width='10')
         self.down_right.grid(row=2, column=2)
 
         self.up.bind('<Enter>', self.key_hover)
@@ -92,63 +68,64 @@ class App:
 
     def parse_keys_down(self, widget):
         if widget.cget('text') == self.up_string:
-            KeySim.up_key_down()
+            PressKey('up')
         elif widget.cget('text') == self.down_string:
-            KeySim.down_key_down()
+            PressKey('down')
         elif widget.cget('text') == self.left_string:
-            KeySim.left_key_down()
+            PressKey('left')
         elif widget.cget('text') == self.right_string:
-            KeySim.right_key_down()
+            PressKey('right')
         elif widget.cget('text') == self.up_left_string:
-            KeySim.left_key_down()
-            KeySim.up_key_down()
+            PressKey('left')
+            PressKey('up')
         elif widget.cget('text') == self.up_right_string:
-            KeySim.right_key_down()
-            KeySim.up_key_down()
+            PressKey('right')
+            PressKey('up')
         elif widget.cget('text') == self.down_left_string:
-            KeySim.left_key_down()
-            KeySim.down_key_down()
+            PressKey('left')
+            PressKey('down')
         elif widget.cget('text') == self.down_right_string:
-            KeySim.right_key_down()
-            KeySim.down_key_down()
+            PressKey('right')
+            PressKey('down')
 
     def parse_keys_up(self, widget):
         if widget.cget('text') == self.up_string:
-            KeySim.up_key_up()
+            ReleaseKey('up')
         elif widget.cget('text') == self.down_string:
-            KeySim.down_key_up()
+            ReleaseKey('down')
         elif widget.cget('text') == self.left_string:
-            KeySim.left_key_up()
+            ReleaseKey('left')
         elif widget.cget('text') == self.right_string:
-            KeySim.right_key_up()
+            ReleaseKey('right')
         elif widget.cget('text') == self.up_left_string:
-            KeySim.left_key_up()
-            KeySim.up_key_down()
+            ReleaseKey('left')
+            ReleaseKey('up')
         elif widget.cget('text') == self.up_right_string:
-            KeySim.right_key_up()
-            KeySim.up_key_up()
+            ReleaseKey('right')
+            ReleaseKey('up')
         elif widget.cget('text') == self.down_left_string:
-            KeySim.left_key_up()
-            KeySim.down_key_up()
+            ReleaseKey('left')
+            ReleaseKey('down')
         elif widget.cget('text') == self.down_right_string:
-            KeySim.right_key_up()
-            KeySim.down_key_up()
+            ReleaseKey('right')
+            ReleaseKey('down')
 
     def key_press(self):
-        print ("Test")
+        print("Test")
 
     def key_hover(self, event):
         event.widget.config(bg='green')
         self.parse_keys_down(event.widget)
-        print ("Hover Test")
+        print("Hover Test")
 
     def key_leave_hover(self, event):
         event.widget.config(bg='gray')
         self.parse_keys_up(event.widget)
-        print ("Leave Hover Test")
+        print("Leave Hover Test")
 
     def key_double_press(self, event):
-        print ("Double Click Test")
+        print("Double Click Test")
+
 
 root = Tk()
 root.title("CheesePad")
